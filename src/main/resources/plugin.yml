@@ -1,0 +1,4 @@
+name: IridiumClans
+version: '${project.version}'
+main: me.xflyiwnl.iridiumclans.IridiumClans
+api-version: '1.16'
