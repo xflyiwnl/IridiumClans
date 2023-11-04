@@ -1,5 +1,7 @@
 package me.xflyiwnl.iridiumclans.object;
 
+import me.xflyiwnl.iridiumclans.IridiumClans;
+import me.xflyiwnl.iridiumclans.object.rank.Rank;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
@@ -22,6 +24,19 @@ public class ClanPlayer extends ClanObject {
         this.clan = clan;
         this.rank = rank;
         this.joinedDate = joinedDate;
+    }
+
+    public void create(boolean save) {
+        IridiumClans.getInstance().getPlayers().put(getUniqueId(), this);
+        if (save) save();
+    }
+
+    public void save() {
+
+    }
+
+    public void remove() {
+        IridiumClans.getInstance().getPlayers().remove(getUniqueId());
     }
 
     @Override

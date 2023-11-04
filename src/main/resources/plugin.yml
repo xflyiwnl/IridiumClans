@@ -2,3 +2,17 @@ name: IridiumClans
 version: '${project.version}'
 main: me.xflyiwnl.iridiumclans.IridiumClans
 api-version: '1.16'
+
+commands:
+  clans:
+    description: "Base clan command"
+    aliases:
+      - iridiumclans
+      - clan
+      - c
+  clansadmin:
+    description: "Admin commands for clans"
+    aliases:
+      - iridiumclansadmin
+      - clanadmin
+      - ca

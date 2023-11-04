@@ -1,5 +1,9 @@
 package me.xflyiwnl.iridiumclans.object;
 
+import me.xflyiwnl.iridiumclans.object.bank.Bank;
+import me.xflyiwnl.iridiumclans.object.rank.Rank;
+import me.xflyiwnl.iridiumclans.object.storage.Storage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

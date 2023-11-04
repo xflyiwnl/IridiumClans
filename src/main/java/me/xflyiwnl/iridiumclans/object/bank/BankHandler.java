@@ -1,4 +1,4 @@
-package me.xflyiwnl.iridiumclans.object;
+package me.xflyiwnl.iridiumclans.object.bank;
 
 public interface BankHandler {
 

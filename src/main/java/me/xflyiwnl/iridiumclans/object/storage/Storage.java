@@ -1,4 +1,4 @@
-package me.xflyiwnl.iridiumclans.object;
+package me.xflyiwnl.iridiumclans.object.storage;
 
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

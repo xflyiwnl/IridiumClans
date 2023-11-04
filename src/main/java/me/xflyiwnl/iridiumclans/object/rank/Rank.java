@@ -1,4 +1,6 @@
-package me.xflyiwnl.iridiumclans.object;
+package me.xflyiwnl.iridiumclans.object.rank;
+
+import me.xflyiwnl.iridiumclans.object.ClanObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +22,19 @@ public class Rank extends ClanObject implements RankHandler {
         this.nodes = nodes;
     }
 
+    @Override
     public boolean containsNode(PermissionNode node) {
         return getNodes().contains(node);
     }
+
+    @Override
     public void addNode(PermissionNode node) {
         if (!containsNode(node)) {
             getNodes().add(node);
         }
     }
+
+    @Override
     public void removeNode(PermissionNode node) {
         getNodes().remove(node);
     }
