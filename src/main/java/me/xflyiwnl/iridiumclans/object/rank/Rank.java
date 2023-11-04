@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public class Rank extends ClanObject implements RankHandler {
 
+    private int weight = 0;
     private List<PermissionNode> nodes = new ArrayList<PermissionNode>();
 
     public Rank() {
@@ -37,6 +38,14 @@ public class Rank extends ClanObject implements RankHandler {
     @Override
     public void removeNode(PermissionNode node) {
         getNodes().remove(node);
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     @Override

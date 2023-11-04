@@ -8,6 +8,7 @@ import me.xflyiwnl.iridiumclans.listener.PlayerListener;
 import me.xflyiwnl.iridiumclans.object.Clan;
 import me.xflyiwnl.iridiumclans.object.ClanPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,6 +45,7 @@ public final class IridiumClans extends JavaPlugin {
         checkDatabase();
         databaseSource.load();
 
+        checkPlayers();
     }
 
     public void registerCommands() {
@@ -63,6 +65,21 @@ public final class IridiumClans extends JavaPlugin {
     public void checkDatabase() {
         // todo database type flat or sql
         databaseSource = new FlatFileSource();
+    }
+
+    public void checkPlayers() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            ClanPlayer clanPlayer = IridiumClans.getInstance().getPlayer(player.getUniqueId());
+
+            if (clanPlayer != null) return;
+
+            clanPlayer = new ClanPlayer(player.getUniqueId());
+            clanPlayer.create(true);
+        }
+    }
+
+    public Clan getClan(UUID uniqueId) {
+        return clans.get(uniqueId);
     }
 
     public ClanPlayer getPlayer(UUID uniqueId) {

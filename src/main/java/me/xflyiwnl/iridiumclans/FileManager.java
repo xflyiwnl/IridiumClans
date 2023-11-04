@@ -59,17 +59,18 @@ public class FileManager {
         File dataFolder = IridiumClans.getInstance().getDataFolder();
         File languageFile = new File(dataFolder, "language/" + Settinger.of("language") + ".yml");
 
-        if (!languageFile.exists()) {
-            String defaultLanguage = IridiumClans.getInstance().getDefaultLanguage();
-            languageFile = new File(dataFolder, "language/" + defaultLanguage + ".yml");
-            if (!languageFile.exists()) {
-                return;
-            }
-            language = new YAML("language/" + defaultLanguage + ".yml");
+        if (languageFile.exists()) {
+            language = new YAML(languageFile, YamlConfiguration.loadConfiguration(languageFile));
             return;
         }
 
-        language = new YAML(languageFile, YamlConfiguration.loadConfiguration(languageFile));
+        String defaultLanguage = IridiumClans.getInstance().getDefaultLanguage();
+        languageFile = new File(dataFolder, "language/" + defaultLanguage + ".yml");
+        if (!languageFile.exists()) {
+            return;
+        }
+        language = new YAML("language/" + defaultLanguage + ".yml");
+
     }
 
     public YAML getLanguage() {

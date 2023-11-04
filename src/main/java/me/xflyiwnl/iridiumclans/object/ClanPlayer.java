@@ -1,8 +1,12 @@
 package me.xflyiwnl.iridiumclans.object;
 
 import me.xflyiwnl.iridiumclans.IridiumClans;
+import me.xflyiwnl.iridiumclans.database.DatabaseSource;
+import me.xflyiwnl.iridiumclans.database.FlatFileSource;
+import me.xflyiwnl.iridiumclans.database.flat.FlatFile;
 import me.xflyiwnl.iridiumclans.object.rank.Rank;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
@@ -32,11 +36,36 @@ public class ClanPlayer extends ClanObject {
     }
 
     public void save() {
-
+        DatabaseSource source = IridiumClans.getInstance().getDatabaseSource();
+        if (source instanceof FlatFileSource) {
+            FlatFile<ClanPlayer> flatFile = ((FlatFileSource) source).getPlayerFile();
+            flatFile.save(this);
+        }
     }
 
     public void remove() {
         IridiumClans.getInstance().getPlayers().remove(getUniqueId());
+        DatabaseSource source = IridiumClans.getInstance().getDatabaseSource();
+        if (source instanceof FlatFileSource) {
+            FlatFile<ClanPlayer> flatFile = ((FlatFileSource) source).getPlayerFile();
+            flatFile.remove(this);
+        }
+    }
+
+    public boolean isOnline() {
+        return getPlayer() == null ? false : getPlayer().isOnline();
+    }
+
+    public Player getPlayer() {
+        return Bukkit.getPlayer(getUniqueId());
+    }
+
+    public boolean hasClan() {
+        return clan != null ? true : false;
+    }
+
+    public boolean hasRank() {
+        return rank != null ? true : false;
     }
 
     @Override

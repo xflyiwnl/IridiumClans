@@ -7,12 +7,30 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ClanCommand implements TabCompleter, CommandExecutor {
 
+    private List<String> tabCompletes = Arrays.asList(
+            "create",
+            "remove",
+            "deposit",
+            "withdraw",
+            "storage",
+            "invite",
+            "kick",
+            "members",
+            "info",
+            "ranks",
+            "rank"
+    );
+
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        if (args.length == 1) {
+            return tabCompletes;
+        }
         return null;
     }
 
